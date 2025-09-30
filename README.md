@@ -5,6 +5,7 @@ For this simple demo we'll use the following technologies/tools:
 - Micrometer with Open Telemetry (OTLP).
 - Zipkin for traces.
 - Prometheus for metrics.
+- Grafana to visualise Prometheus metrics.
 
 This is just a simple observability demo. There are 2 services A and B, as shown in the diagram below:
 
@@ -24,7 +25,7 @@ We want the following:
 4. Metrics are collected by Prometheus
 
 To test, run:
-1. run the containers for Zipkin / Prometheus
+1. run the containers for Zipkin / Prometheus / Grafana
 ```shell
 docker compose -f docker-compose.yml up -d
 ```
