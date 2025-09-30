@@ -1,5 +1,11 @@
 # Simple Observability Demo
 
+For this simple demo we'll use the following technologies/tools:
+- Spring Boot WebFlux.
+- Micrometer with Open Telemetry (OTLP).
+- Zipkin for traces.
+- Prometheus for metrics.
+
 This is just a simple observability demo. There are 2 services A and B, as shown in the diagram below:
 
 ```mermaid
@@ -14,17 +20,13 @@ sequenceDiagram
 We want the following:
 1. Generate a Trace ID and a Span ID everytime the API A is hit.
 2. Propagate the Trace ID and Span ID from A to B, so we can track the whole request end-to-end.
-3. Upload the logs to a distributed log system so we can.
-
-For this simple demo we'll use the following technologies:
-- Spring Boot WebFlux.
-- Micrometer with Open Telemetry (OTLP).
-- Zipkin as our distributed log system.
+3. Traces are sent to Zipkin
+4. Metrics are collected by Prometheus
 
 To test, run:
-1. run ZipKin
+1. run the containers for Zipkin / Prometheus
 ```shell
-docker run -d --name zipkin -p 9411:9411 openzipkin/zipkin
+docker compose -f docker-compose.yml up -d
 ```
 2. run service A
 ```shell

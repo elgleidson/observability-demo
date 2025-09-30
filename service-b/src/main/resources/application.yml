@@ -6,6 +6,10 @@ spring:
   reactor:
     context-propagation: auto
 management:
+  endpoints:
+    web:
+      exposure:
+        include: prometheus
   tracing:
     sampling:
       probability: 1.0 # 100%
