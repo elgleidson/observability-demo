@@ -1,10 +1,22 @@
 services:
 
-  zipkin:
-    image: openzipkin/zipkin:latest
-    container_name: zipkin
+  tempo_init:
+    image: &tempoImage grafana/tempo:latest
+    user: root
+    entrypoint: ["chown", "10001:10001", "/var/tempo"]
+
+  tempo:
+    image: *tempoImage
+    container_name: tempo
+    command: ["-config.file=/etc/tempo.yml"]
+    volumes:
+      - ./tempo.yml:/etc/tempo.yml
     ports:
-      - "9411:9411"
+      - "3200:3200"
+      - "4317:4317"
+      - "4318:4318"
+    depends_on:
+      - tempo_init
 
   prometheus:
     image: prom/prometheus:latest
@@ -19,5 +31,6 @@ services:
     container_name: grafana
     volumes:
       - ./grafana_provisioning_prometheus.yml:/etc/grafana/provisioning/datasources/prometheus.yml
+      - ./grafana_provisioning_tempo.yml:/etc/grafana/provisioning/datasources/tempo.yml
     ports:
       - "3000:3000"
