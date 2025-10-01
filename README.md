@@ -3,9 +3,9 @@
 For this simple demo we'll use the following technologies/tools:
 - Spring Boot WebFlux.
 - Micrometer with Open Telemetry (OTLP).
-- Zipkin for traces.
+- ~~Zipkin~~ Grafana Tempo for traces.
 - Prometheus for metrics.
-- Grafana to visualise Prometheus metrics.
+- Grafana to visualisation
 
 This is just a simple observability demo. There are 2 services A and B, as shown in the diagram below:
 
