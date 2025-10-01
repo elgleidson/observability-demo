@@ -56,5 +56,4 @@ You'll see something like:
 2025-09-29T21:10:29.735+01:00  INFO 21270 --- [serviceB] [     parallel-1] [232b6978b9c021f4800c37cbdbeed06f-49677b6c1ee48cb3] observability.ControllerB                : exit something: response=<200 OK OK,response from B at 2025-09-29T21:10:28.810337,[]>
 ```
 
-Then, go to zipkin http://localhost:9411/zipkin/traces/232b6978b9c021f4800c37cbdbeed06f and you'll see something like this:
-![img.png](img.png)
+Then, go to [Grafana](http://localhost:3000) -> Explore -> Tempo, and filter the trace ID.
