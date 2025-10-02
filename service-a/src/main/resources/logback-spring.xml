@@ -3,16 +3,21 @@
   <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
   <include resource="org/springframework/boot/logging/logback/file-appender.xml"/>
 
+  <springProperty scope="context" name="applicationName" source="spring.application.name"/>
+
   <!-- Loki Logging -->
   <appender name="LOKI" class="com.github.loki4j.logback.Loki4jAppender">
     <http>
       <url>http://localhost:3100/loki/api/v1/push</url>
     </http>
+    <labels>
+      app=${applicationName}
+      service_name=${applicationName}
+      host=${HOSTNAME}
+      level=%level
+    </labels>
+    <readMarkers>true</readMarkers>
     <format>
-      <label>
-        <pattern>app=${name}, level=%level</pattern>
-        <readMarkers>true</readMarkers>
-      </label>
       <message>
         <pattern>
           {
